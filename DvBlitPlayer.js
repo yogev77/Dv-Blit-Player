@@ -35,7 +35,7 @@ function DvBlitPlayer()
 	// PRIVATE FUNCTIONS
 	//---------------------------------------------
 	
-	function playCurrentFrame()
+	function displayCurrentFrame()
 	{
 		canvasCtx2d.drawImage(images[imageIndex],0,0);
 	}
@@ -60,6 +60,11 @@ function DvBlitPlayer()
 		images = new Array();
 	}
 	
+	function isValidFrameIndex(frameIndex)
+	{
+		return (-1< frameIndex && frameIndex < images.length-1);
+	}
+	
 	function log(messsage)
 	{
 		console.log(messsage);
@@ -79,7 +84,7 @@ function DvBlitPlayer()
 		resetAnimation();
 		canvasCtx2d = canvas.getContext('2d');
 		images = frames;
-		images[0].onload = playCurrentFrame;
+		images[0].onload = displayCurrentFrame;
 	}
 	
 	/*
@@ -90,15 +95,32 @@ function DvBlitPlayer()
 	 */
 	function gotoAndStop(frameIndex)
 	{
-		if(-1< frameIndex && frameIndex < images.length-1)
+		if(isValidFrameIndex(frameIndex))
 		{
 			imageIndex = frameIndex;
-			playCurrentFrame();
+			displayCurrentFrame();
+			pause();
 		}
 		else
 		{
 			throw("Error: Requested frame - " + frameIndex + " is out of frame range");
+		}	
+		
+	}
+	
+	function gotoAndPlay(frameIndex)
+	{
+		if(isValidFrameIndex(frameIndex))
+		{
+			imageIndex = frameIndex;
+			displayCurrentFrame();
+			play();
 		}
+		else
+		{
+			throw("Error: Requested frame - " + frameIndex + " is out of frame range");
+		}	
+		
 	}
 		
 	/*
@@ -116,7 +138,7 @@ function DvBlitPlayer()
 	function prevFrame()
 	{
 		imageIndex = imageIndex == 0 ? images.length -1 : (imageIndex -1) % images.length;
-		playCurrentFrame();
+		displayCurrentFrame();
 	}
 	
 	/*
@@ -125,7 +147,7 @@ function DvBlitPlayer()
 	function nextFrame()
 	{
 		imageIndex = (imageIndex +1) % images.length;
-		playCurrentFrame();
+		displayCurrentFrame();
 	}
 	
 	/*
@@ -164,6 +186,7 @@ function DvBlitPlayer()
 		prevFrame : prevFrame,
 		nextFrame: nextFrame,
 		gotoAndStop:gotoAndStop,
+		gotoAndPlay: gotoAndPlay,
 		play: play,
 		playReverse: playReverse,
 		pause: pause,
