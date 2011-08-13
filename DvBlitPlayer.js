@@ -12,9 +12,10 @@
  * 
  * Description:
  * The DvBlitPlayer Class Blits a given Array of images on to a Canvas element
- * You can create as many as you need players
+ * You can create as many as you unique players as you need
  * See the usage Example below for implementations
  * 
+ * The Interface is similar to ActionScript MovieClip Interface (i.e play(), gotoAndStop(), nextFrame() etc...)
  */ 
 
 function DvBlitPlayer()
@@ -83,10 +84,10 @@ function DvBlitPlayer()
 	}
 	
 	/*
-	 * show a specific frame
+	 * Show a specific frame
 	 * @frameIndex - the frame index to go to
 	 *  
-	 * * Must be in frames range
+	 * (*) Must be in frames range
 	 */
 	function gotoAndStop(frameIndex)
 	{
@@ -130,7 +131,7 @@ function DvBlitPlayer()
 	}
 	
 	/*
-	 * Plays all the frames as movie
+	 * Plays all the frames as an animation
 	 */
 	function play()
 	{
@@ -179,8 +180,8 @@ function DvBlitPlayer()
 	//----------------------------------------------------
 	
 	/*
-	//Declare the player variable
 	
+	//Declare the player variable
 	var player;
 
 	function runExample()
@@ -198,26 +199,25 @@ function DvBlitPlayer()
 		player.setupCanvasAndImages(canvas, getImagesForAnimation());
 		
 		//4. Set frame rate in seconds
-		player.setFrameRateInSeconds(5);
+		player.setFrameRateInSeconds(20);
 		
 		//5. Play
 		player.play();
 	}
 	
-	//Create and returns an Array of images to animate
+	//Create and return an Array of images to animate
 	
 	function getImagesForAnimation()
 	{
-		var imageArray = new Array();
+		var images = new Array();
 		
 		for(var i=1; i<7; i++)
 		{
-			console.log("Adding image: " + i);
 			var image = new Image();
-			image.src = "img/sideAnimation/" + i +".png";
-			imageArray.push(image);
+			image.src = "imagesPath/image" + i +".jpg";
+			images.push(image);
 		}
 		
-		return imageArray;
+		return images;
 	}
 	*/
