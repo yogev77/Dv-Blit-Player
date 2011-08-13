@@ -37,7 +37,6 @@ function DvBlitPlayer()
 	
 	function playCurrentFrame()
 	{
-		log('DvBlitPlayer.playCurrentFrame: ' + imageIndex);
 		canvasCtx2d.drawImage(images[imageIndex],0,0);
 	}
 	
@@ -91,17 +90,17 @@ function DvBlitPlayer()
 	 */
 	function gotoAndStop(frameIndex)
 	{
-		if(0<frameIndex && images.length-1 < frameIndex)
+		if(-1< frameIndex && frameIndex < images.length-1)
 		{
 			imageIndex = frameIndex;
 			playCurrentFrame();
 		}
 		else
 		{
-			log("Error: frame index - " + frameIndex + " is out of frame range");
+			throw("Error: Requested frame - " + frameIndex + " is out of frame range");
 		}
 	}
-	
+		
 	/*
 	 * Sets the animation framerate
 	 * @frameRatePerSeconds - the frame rate per second (default is 30)
@@ -109,7 +108,6 @@ function DvBlitPlayer()
 	function setFrameRateInSeconds(frameRate)
 	{
 		frameRatePerSeconds = 1000/frameRate;
-		console.log(frameRatePerSeconds);
 	}
 	
 	/*
