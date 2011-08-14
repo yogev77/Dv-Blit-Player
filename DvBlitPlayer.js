@@ -62,7 +62,7 @@ function DvBlitPlayer()
 	
 	function isValidFrameIndex(frameIndex)
 	{
-		return (-1< frameIndex && frameIndex < images.length-1);
+		return (-1< frameIndex && frameIndex < images.length);
 	}
 	
 	function log(messsage)
