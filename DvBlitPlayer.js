@@ -211,7 +211,7 @@ function DvBlitPlayer()
 		var canvas = //(e.g a canvas reference from the HTML file);
 		
 		//2. Create an array of images you wish to animate
-		var images = getImages();
+		var images = getImagesForAnimation();
 		
 		//3. Create a new player
 		player = new DvBlitPlayer();
